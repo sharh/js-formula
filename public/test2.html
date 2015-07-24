@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		body{
+			/*zoom: 2 !important; */
+		}
+		svg{
+			/*display:block;*/
+		}
+	</style>
+	<script type="text/javascript"  src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript"  src="js/underscore.js"></script>
+	<script type="text/javascript"  src="js/snap.svg.js"></script>
+	<script type="text/javascript"  src="js/formula/els/mi.js"></script>
+	<script type="text/javascript"  src="js/formula/els/mo.js"></script>
+	<script type="text/javascript"  src="js/formula/els/mn.js"></script>
+	<script type="text/javascript"  src="js/formula/els/mtext.js"></script>
+	<script type="text/javascript"  src="js/formula/tools/String.js"></script>
+	<script type="text/javascript"  src="js/formula/tools/caculateBox.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var div = document.createElement('span');
+			div.innerHTML = 'x';
+			div.style.cssText = "position: absolute;top: -9999px;"
+			document.body.appendChild(div);
+			window.defaultHeight = div.getClientRects()[0].height;
+			// var box = {width: 0, height: defaultHeight};
+			var math = document.querySelectorAll('math');
+			// // box = caculateBox(math[0], box);
+			// var mfenced = math[0].getElementsByTagName('mfenced')[0];
+			// // drawMfenced(mfenced, null, null,box);
+			// var box2 = {width: 0, height: defaultHeight};
+			// // box2 = caculateBox(math[1], box2);
+			// var menclose = math[1].getElementsByTagName('menclose')[0];
+			// drawMenclose(menclose, null, null, box2);
+			// drawMath(math[1]);
+			// drawMath(math[0]);
+			var stime = Date.now();
+			console.time('当前页面公式渲染用时');
+			for (var i = math.length - 1; i >= 0; i--) {
+				var svg = drawMath(math[i]);
+				math[i].parentNode.replaceChild(svg.node, math[i]);
+			};
+			console.timeEnd('当前页面公式渲染用时');
+			var etime = Date.now();
+			var a = etime - stime;
+			$(document.body).append($('<p>当前渲染的公式数目为： '+ math.length +', 总共用时： '+ a +'ms. 当前操作系统为： '+navigator.platform+'</p>'))
+			// alert('渲染用时： '+ a + 'ms');
+			// console.log();
+			// console.log(box);
+			// var s = Snap().attr(box).attr({
+			// 	fill: 'none',
+			// 	stroke: '#bada55'
+			// });
+			// s.ellipse(10,10,10,10)
+
+			// var s2 = Snap().attr(box).attr({
+			// 	fill: 'none',
+			// 	stroke: '#bada55'
+			// });
+
+			// var ps2 = s2.path("M2 0H40");
+			// s.add(s2);
+			// $(document.body).append($('<div></div>').html(JSON.stringify(box)))
+			
+			function main(){
+
+				var h = box.height, w = box.width;
+				var str = "M5 5H0V"+(h-5)+'H5';
+				s.path(str)
+				str = "M14 5Q9 "+(h/2)+" 14 "+(h - 5);
+				s.path(str)
+				str = "M16 "+(h/2)+"H33";
+				s.path(str)
+
+				s.text(20, h/2 - 2, '1').attr({
+					fill: 'none',
+					stroke: '#bada55'
+				});
+				s.text(20, h - 2, '2').attr({
+					fill: 'none',
+					stroke: '#bada55'
+				});
+				s.text(34, h/2 + 6, '+').attr({
+					fill: 'none',
+					stroke: '#bada55'
+				});
+				str = "M43 "+(h/2)+"H63";
+				s.path(str).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+
+				str = "M45 "+(h/2 -4)+"L48 "+(h/2 - 1)+"L53 5H61";
+				s.path(str).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+
+				str = "M45 "+(h/2 -4)+"L48 "+(h/2 - 1)+"L53 5H61";
+				s.text(53, h/2 -1, 3).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+				s.text(49, h - 2, 2).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+				s.text(65, h/2 + 6, 'i').attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+
+				str = "M75 5Q80 "+h/2+" 75 "+(h - 5);
+				s.path(str).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+
+				s.text(80, 13, 2).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+
+				str = "M90 5H95V"+(h-5)+"H90";
+				s.path(str).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+
+				s.text(97, 13, 2).attr({
+					fill: 'none',
+					stroke: '#bada55'
+				})
+			}
+		}
+	</script>
+</head>
+<body style="zoom: 2;">
+	<!-- <math xmlns="http://www.w3.org/1998/Math/MathML">
+    <msqrt>
+        <mi>a</mi>
+        <mi>s</mi>
+        <mi>d</mi>
+        <mi>a</mi>
+        <mi>s</mi>
+        <mi>d</mi>
+        <mi>s</mi>
+        <mi>a</mi>
+        <mi>d</mi>
+        <mspace linebreak="newline" />
+        <mi>a</mi>
+        <mi>s</mi>
+        <mi>d</mi>
+        <mi>a</mi>
+        <mi>s</mi>
+        <mspace linebreak="newline" />
+        <mi>d</mi>
+        <mi>d</mi>
+        <mspace linebreak="newline" />
+        <mi>d</mi>
+        <mi>d</mi>
+        <mspace linebreak="newline" />
+        <mi>d</mi>
+        <mi>d</mi>
+        <mspace linebreak="newline" />
+        <mi>d</mi>
+        <mi>d</mi>
+    </msqrt>
+</math> -->
+
+
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced open="||" close="||"><mrow><mi>s</mi><mi>d</mi><mi>f</mi><mi>s</mi><mi>d</mi><mi>f</mi><mi>s</mi><mi>d</mi><mspace linebreak="newline"/><mi>d</mi><mi>s</mi><mi>f</mi><mi>s</mi><mspace linebreak="newline"/><mi>d</mi><mi>f</mi><mi>s</mi><mi>d</mi><mi>f</mi></mrow></mfenced></math>
+	
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><menclose notation="phasorangle"><mi>a</mi><mi>s</mi><mi>d</mi><mi>a</mi><mi>s</mi><mi>d</mi><mi>a</mi><mi>s</mi><mspace linebreak="newline"/><mi>a</mi><mi>sasdasdasdasdasdsadsadsada</mi><mi>d</mi><mi>a</mi><mi>s</mi><mspace linebreak="newline"/><mi>d</mi><mi>a</mi><mi>s</mi><mi>d</mi></menclose></math>
+
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>3</mn></mtd><mtd><mn>3</mn><menclose notation="phasorangle"><mi>a</mi><mi>s</mi><mi>d</mi><mi>a</mi><mi>s</mi><mi>d</mi><mi>a</mi><mi>s</mi><mspace linebreak="newline"/><mi>a</mi><mi>sasdasdasdasdasdsadsadsada</mi><mi>d</mi><mi>a</mi><mi>s</mi><mspace linebreak="newline"/><mi>d</mi><mi>a</mi><mi>s</mi><mi>d</mi></menclose></mtd></mtr></mtable></math>
+	
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mo>asdas</mo></mtd><mtd><mo>asdas</mo><mspace linebreak="newline"/><mo>asdas</mo><mspace linebreak="newline"/><mo>asdas</mo></mtd></mtr></mtable></math>
+
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><mtable><mtr><mtd><mn>1</mn></mtd><mtd><mn>12312321</mn></mtd><mtd><mn>12312</mn></mtd><mtd><mn>1</mn></mtd></mtr><mtr><mtd><mn>222</mn></mtd><mtd><mn>123</mn><mfrac><mn>1</mn><mn>2</mn></mfrac></mtd><mtd><mn>123213213</mn></mtd><mtd><mn>12</mn></mtd></mtr><mtr><mtd><mn>23</mn></mtd><mtd><mn>213</mn></mtd><mtd><mn>21</mn></mtd><mtd><mn>12312321大师实打实大师</mn></mtd></mtr><mtr><mtd><mn>23</mn></mtd><mtd><mn>213</mn></mtd><mtd><mspace linebreak="newline"/><mn>21</mn></mtd><mtd><mn>12312321大师实打实大师</mn><menclose notation="phasorangle"><mi>a</mi><mi>s</mi><mi>d</mi><mi>a</mi><mi>s</mi><mi>d</mi><mi>a</mi><mi>s</mi><mspace linebreak="newline"/><mi>a</mi><mi>sasdasdasdasdasdsadsadsada</mi><mspace width="20px" height="20px"/><mi>d</mi><mi>a</mi><mi>s</mi><mspace linebreak="newline"/><mi>d</mi><mi>a</mi><mi>s</mi><mi>d</mi></menclose></mtd></mtr></mtable><mspace linebreak="newline"/><mo>asdasd</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mn>1</mn><mn>1</mn><mn>1</mn></mrow></mfrac></math>
+
+	<math><mfenced open="{" close="}"><mspace width="20px" height="20px"/><mo>asdasdasd啊实打实的</mo><mo>asdasd</mo><mspace linebreak="newline"/><mspace linebreak="newline"/><mspace linebreak="newline"/><mspace linebreak="newline"/><mspace width="20px" height="20px"/><mo>asdasd</mo><mspace width="20px" height="20px"/></mfenced><mspace width="20px" height="20px"/></math>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mn>1</mn><mn>2</mn></mfrac></math>
+	<span>asdasd啊实打实的</span>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>阿斯顿撒</mi><mrow><mi>a</mi><mi>a</mi><mi>a</mi><mi>a</mi></mrow></msup></math>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><msup><mi>阿斯顿撒</mi><mrow><mi>a</mi><mfenced open="[" close="]"><mrow><mi>a</mi><mi>s</mi><mi>d</mi><mi>a</mi><mi>s</mi><mi>d</mi><msqrt><mi>a</mi><mi>s</mi><mfrac><mrow><mi>s</mi><mi>d</mi></mrow><mrow><mi>a</mi><mi>s</mi><mi>d</mi></mrow></mfrac></msqrt></mrow></mfenced><mi>a</mi><mi>a</mi><mi>a</mi></mrow></msup></math>
+	<math xmlns="http://www.w3.org/1998/Math/MathML"><mroot><mrow><mi>w</mi><mi>w</mi><mi>w会大大</mi><mspace linebreak="newline"/><mspace linebreak="newline"/><mspace linebreak="newline"/><mi>是啊实打实</mi></mrow><mn>22</mn></mroot></math>
+
+	<!-- <math xmlns="http://www.w3.org/1998/Math/MathML"><mroot><mspace linebreak="newline"/><mspace linebreak="newline"/></mroot></math> -->
+</body>
+</html>
